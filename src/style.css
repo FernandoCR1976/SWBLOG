@@ -1,0 +1,32 @@
+body {
+    background-color: black;
+}
+
+.navbar {
+    background-color: black;
+}
+
+a.nav-link{
+    color: #fee71e;
+}
+
+a.nav-link:hover{
+    color: #fe1e1e;
+}
+
+.titulo{
+    color: #fee71e;
+}
+
+.card{
+    background-color: #282727;
+    color: #fee71e;
+}
+
+.card-footer{
+    background-color: inherit;
+    border-top: none;
+}
+#controlButtons{
+    width: 60px;
+}
