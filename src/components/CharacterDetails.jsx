@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
+import { Context } from '../store/appContext';
 
 const CharacterDetails = (props) => {
+
+    const { store, actions } = useContext(Context);
+    useEffect(() => {
+        actions.getCharacter("https://swapi.dev/api/people/" + props.match.params.id + "/");
+    }, [])
+
     return (
-        <div className="container-fluid">
+        <div className="container">
             <div className="row">
                 <div className="col-md-12">
                     <h1 className='titulo'>Character Detail</h1>
@@ -11,31 +18,31 @@ const CharacterDetails = (props) => {
             </div>
             <div className="row">
                 <div className="col-md-12">
-                    <div className="card mb-3" style={{ maxWidth: 740 + "px" }}>
+                    <div className="card mb-3" style={{ maxWidth: 100 + "%" }}>
                         <div className="row no-gutters">
                             <div className="col-md-4">
-                                {!!props.character && 
-                                <img src={`https://starwars-visualguide.com/assets/img/characters/${props.character.url.replace('http://swapi.dev/api/people/', '').replace('/', '')}.jpg`} className="card-img" alt="..." />}
+                                {!!store.character &&
+                                    <img src={`https://starwars-visualguide.com/assets/img/characters/${store.character.url.replace('http://swapi.dev/api/people/', '').replace('/', '')}.jpg`} className="card-img img-fluid" alt="..." />}
                             </div>
                             <div className="col-md-8">
                                 <div className="card-body">
                                     {
-                                        !!props.character&&
+                                        !!store.character &&
                                         (
                                             <>
-                                            <h5 className="card-title">Name: {props.character.name}</h5>
-                                            <p className="card-text my-0">Height: {props.character.height}</p>
-                                            <p className="card-text my-0">Mass: {props.character.mass}</p>
-                                            <p className="card-text my-0">Hair color: {props.character.hair_color}</p>
-                                            <p className="card-text my-0">Eye color: {props.character.skin_color}</p>
-                                            <p className="card-text my-0">Birth year: {props.character.birth_year}</p>
-                                            <p className="card-text my-0">Gender: {props.character.gender}</p>
+                                                <h5 className="card-title"><span>Name:</span> {store.character.name}</h5>
+                                                <p className="card-text my-0"><span>Height:</span> {store.character.height}</p>
+                                                <p className="card-text my-0"><span>Mass:</span> {store.character.mass}</p>
+                                                <p className="card-text my-0"><span>Hair color:</span> {store.character.hair_color}</p>
+                                                <p className="card-text my-0"><span>Eye color:</span> {store.character.skin_color}</p>
+                                                <p className="card-text my-0"><span>Birth year:</span> {store.character.birth_year}</p>
+                                                <p className="card-text my-0"><span>Gender:</span> {store.character.gender}</p>
                                             </>
                                         )
                                     }
                                 </div>
                                 <div className="card-footer">
-                                    <button className="btn btn-warning" onClick={()=> props.history.goBack()}>Go back</button>
+                                    <button className="btn btn-warning" onClick={() => props.history.goBack()}>Go back</button>
                                 </div>
                             </div>
                         </div>

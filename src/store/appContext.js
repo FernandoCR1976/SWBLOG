@@ -16,7 +16,8 @@ const inyectContext = PassedComponent => {
         useEffect(() => {
             //
             state.actions.getCharacters("https://swapi.dev/api/people/");
-            state.actions.getVehicles("https://swapi.dev/api/vehicles/")
+            state.actions.getVehicles("https://swapi.dev/api/vehicles/");
+            state.actions.getPlanets("https://swapi.dev/api/planets/");
         }, []);
 
         return (
